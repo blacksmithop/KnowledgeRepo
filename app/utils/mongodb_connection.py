@@ -7,17 +7,18 @@ from bson import ObjectId
 DATABASE_NAME = "knowledge_repo"
 COLLECTION_NAME = "domain_specific"
 
-username = urllib.parse.quote_plus('root')
-password = urllib.parse.quote_plus('password')
+username = urllib.parse.quote_plus('abhi')
+password = urllib.parse.quote_plus('supersecretpassword')
 
 class MongoDB:
     def __init__(
         self,
-        uri="mongodb://localhost:27017/",
+        uri="mongodb://%s:%s@localhost:27018/" % (username, password),
     ):
         self.client = MongoClient(uri)
         self.database = self.client[DATABASE_NAME]
         collection_exists = self._check_if_collection_exists()
+        print(f"Collection exists: {collection_exists}")
         if not collection_exists:
             self._populate_collection()
         

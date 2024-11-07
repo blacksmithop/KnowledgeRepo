@@ -13,7 +13,7 @@ class Category(BaseModel):
     favicon: str = ""
     name: str
     description: str
-    examples: Optional[List[CategoryExample]] = []
+    examples: Optional[CategoryExample] = None
     
     @field_validator("id")
     def convert_objectid(cls, v):
@@ -23,7 +23,7 @@ class AddCategory(BaseModel):
     favicon: str = ""
     name: str
     description: str
-    examples: Optional[List[CategoryExample]] = []
+    examples: Optional[CategoryExample] = None
 
 class DeleteCategory(BaseModel):
     id: str
