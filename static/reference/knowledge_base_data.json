@@ -24,19 +24,87 @@
     "favicon": "https://git-scm.com/favicon.ico",
     "name": "Git",
     "description": "Git is a distributed version control system that tracks changes in source code during software development.",
-    "examples": [
+    "examples": 
       {
         "title": "Introduction to Git",
         "code": "# Introduction to Git\nGit is a version control system that allows you to track changes to files and collaborate with others on software projects.\n\nHere are a few common Git commands:\n\n```bash\n# Initialize a new Git repository\n$ git init\n\n# Clone a repository\n$ git clone https://github.com/user/repo.git\n```\n\nThese commands are essential for setting up a Git project and collaborating with others."
-      },
-      {
-        "title": "Basic Git Commands",
-        "code": "# Basic Git Commands\nHere are some essential Git commands:\n\n```bash\n# Stage changes\n$ git add .\n\n# Commit changes\n$ git commit -m 'Commit message'\n\n# Push to remote\n$ git push origin main\n```\n\nThese commands allow you to track and share changes in your Git repository."
-      },
-      {
-        "title": "Branching in Git",
-        "code": "# Branching in Git\nBranching allows you to diverge from the main line of development and continue to work without affecting the main branch.\n\n```bash\n# Create a new branch\n$ git checkout -b new-feature\n\n# Switch to an existing branch\n$ git checkout main\n\n# Merge a branch into the main branch\n$ git merge new-feature\n```\n\nThis workflow is used to develop new features independently before merging them back into the main project."
       }
-    ]
+  },
+  {
+    "_id": "6729de7a3ef6107bbd175e42",
+    "favicon": "https://nodejs.org/static/images/favicons/favicon.png",
+    "name": "Node.js",
+    "description": "Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine, allowing for server-side JavaScript execution.",
+    "examples": 
+      {
+        "title": "Introduction to Node.js",
+        "code": "# Introduction to Node.js\nNode.js is a JavaScript runtime for building server-side applications.\n\nHere’s how to start a simple HTTP server:\n\n```javascript\nconst http = require('http');\nconst server = http.createServer((req, res) => {\n  res.statusCode = 200;\n  res.setHeader('Content-Type', 'text/plain');\n  res.end('Hello, World!');\n});\n\nserver.listen(3000, () => {\n  console.log('Server running at http://localhost:3000/');\n});\n```\n\nThis script starts an HTTP server that responds with 'Hello, World!'"
+      }
+  },
+  {
+    "_id": "6729de7a3ef6107bbd175e43",
+    "favicon": "https://code.visualstudio.com/favicon.ico",
+    "name": "Visual Studio Code",
+    "description": "Visual Studio Code is a powerful, open-source code editor with support for debugging, syntax highlighting, and version control.",
+    "examples": 
+      {
+        "title": "Extensions in Visual Studio Code",
+        "code": "# Extensions in Visual Studio Code\nVS Code supports extensions that enhance functionality.\n\nTo install an extension:\n\n```shell\n# Open the extensions sidebar\nCtrl+Shift+X\n\n# Search for an extension, for example, Python\n# Click 'Install' to add it to VS Code\n```\n\nExtensions provide language support, themes, debuggers, and more."
+      }
+  },
+  {
+    "_id": "6729de7a3ef6107bbd175e44",
+    "favicon": "https://firebase.google.com/favicon.ico",
+    "name": "Firebase",
+    "description": "Firebase is a platform by Google offering tools to build and deploy web and mobile applications quickly.",
+    "examples": 
+      {
+        "title": "Firebase Authentication",
+        "code": "# Firebase Authentication\nFirebase Authentication provides backend services for easy user authentication.\n\nHere’s how to initialize Firebase and set up Google Sign-In:\n\n```javascript\nimport firebase from 'firebase/app';\nimport 'firebase/auth';\n\nfirebase.initializeApp({\n  apiKey: \"YOUR_API_KEY\",\n  authDomain: \"YOUR_AUTH_DOMAIN\"\n});\n\nconst provider = new firebase.auth.GoogleAuthProvider();\nfirebase.auth().signInWithPopup(provider).then(result => {\n  console.log(result.user);\n}).catch(error => {\n  console.error(error);\n});\n```\n\nThis code snippet initializes Firebase and enables Google Sign-In."
+      }
+  },
+  {
+    "_id": "6729de7a3ef6107bbd175e45",
+    "favicon": "https://kubernetes.io/icons/favicon-32.png",
+    "name": "Kubernetes",
+    "description": "Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications.",
+    "examples": 
+      {
+        "title": "Deploying a Kubernetes Pod",
+        "code": "# Deploying a Kubernetes Pod\nPods are the smallest deployable units in Kubernetes.\n\nHere’s how to create a simple Pod:\n\n```yaml\napiVersion: v1\nkind: Pod\nmetadata:\n  name: mypod\nspec:\n  containers:\n  - name: mycontainer\n    image: nginx\n    ports:\n    - containerPort: 80\n```\n\nApply this configuration with:\n\n```bash\n$ kubectl apply -f mypod.yaml\n```\n\nThis example deploys a Pod running an NGINX container."
+      }
+  },
+  {
+    "_id": "6729de7a3ef6107bbd175e46",
+    "favicon": "https://www.python.org/static/favicon.ico",
+    "name": "Python",
+    "description": "Python is a versatile programming language used for web development, data science, automation, and more.",
+    "examples": 
+      {
+        "title": "Basic Python Script",
+        "code": "# Basic Python Script\nPython is known for its readability and ease of use.\n\nHere’s a simple script to print 'Hello, World!':\n\n```python\nprint('Hello, World!')\n```\n\nThis will output 'Hello, World!' to the console."
+      }
+  },
+  {
+    "_id": "6729de7a3ef6107bbd175e47",
+    "favicon": "https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg",
+    "name": "MongoDB",
+    "description": "MongoDB is a NoSQL document-oriented database, known for its flexibility and scalability.",
+    "examples": 
+      {
+        "title": "Connecting to MongoDB",
+        "code": "# Connecting to MongoDB\nUse the MongoDB driver to connect to a database.\n\n```javascript\nconst MongoClient = require('mongodb').MongoClient;\nconst uri = 'mongodb+srv://<username>:<password>@cluster.mongodb.net/mydb?retryWrites=true&w=majority';\n\nMongoClient.connect(uri, (err, client) => {\n  if (err) throw err;\n  console.log('Connected to MongoDB');\n  client.close();\n});\n```\n\nThis script connects to a MongoDB instance and logs a success message."
+      }
+  },
+  {
+    "_id": "6729de7a3ef6107bbd175e49",
+    "favicon": "https://getbootstrap.com/favicon.ico",
+    "name": "Bootstrap",
+    "description": "Bootstrap is a popular front-end framework for building responsive, mobile-first websites.",
+    "examples": 
+      {
+        "title": "Bootstrap Grid System",
+        "code": "# Bootstrap Grid System\nBootstrap’s grid system allows creating responsive layouts.\n\nHere’s an example of a two-column layout:\n\n```html\n<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-6\">Column 1</div>\n    <div class=\"col-md-6\">Column 2</div>\n  </div>\n</div>\n```\n\nThis layout adapts to different screen sizes automatically."
+      }
   }
 ]

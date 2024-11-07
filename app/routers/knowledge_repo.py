@@ -16,7 +16,12 @@ async def index(request: Request):
     )
 
 
-@router.post("/load_knowledge_data", tags=["Knowledge"])
+@router.get("/list_category", tags=["Knowledge"])
+async def load_data(request: Request):
+    dataset = mongo.get_domain_knowledge()
+    return dataset
+
+@router.post("/search_by_category", tags=["Knowledge"])
 async def load_data(request: Request):
     dataset = mongo.get_domain_knowledge()
     return dataset

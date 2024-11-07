@@ -6,15 +6,21 @@ dropdownBtn.addEventListener("click", () => {
     dropdownContent.classList.toggle("show");
 });
 
-// Search Button Click and Animation
-const searchButton = document.getElementById("search-button");
-const searchInput = document.getElementById("search-input");
-const searchResults = document.getElementById("search-results");
-
-searchButton.addEventListener("click", () => performSearch());
-searchInput.addEventListener("keyup", (event) => {
-    if (event.key === "Enter") performSearch();
-});
+// Fetch categories on page load (list_category)
+async function loadCategories() {
+    try {
+        const response = await fetch("http://localhost:8080/list_category", { method: "GET" });
+        if (response.ok) {
+            const categories = await response.json();
+            renderResults(categories);  // Display categories by default
+        } else {
+            console.error("Failed to load categories");
+        }
+    } catch (error) {
+        console.error("Error loading categories:", error);
+    }
+}
+document.addEventListener("DOMContentLoaded", loadCategories); // Called by default on page load
 
 // Elements for Modal
 const addButton = document.getElementById("add-button");
@@ -33,39 +39,29 @@ addModal.addEventListener("click", (event) => {
 // Form submission for adding new category
 document.getElementById("add-category-form").addEventListener("submit", async (e) => {
     e.preventDefault();
-    console.log("Form submission started");
 
-    // Build the payload
     const payload = {
-        _id: Date.now().toString(), // Temporary unique ID for example
         name: document.getElementById("name").value,
         description: document.getElementById("description").value,
         favicon: document.getElementById("favicon").value,
-        examples: [
-            {
-                title: "Example",
-                code: document.getElementById("example").value
-            }
-        ]
+        examples: {
+            title: document.getElementById("example-title").value,
+            code: document.getElementById("example-code").value
+        }
     };
 
-    console.log("Payload to be sent:", payload);
-
     try {
-        // Send data to the server
-        const response = await fetch("http://localhost:8080/load_knowledge_data", {
+        const response = await fetch("http://localhost:8080/add_category", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
         });
 
         if (response.ok) {
-            console.log("Data successfully sent to /load_knowledge_data");
             alert("Category added successfully!");
             addModal.classList.remove("show-modal");
             document.getElementById("add-category-form").reset();
+            loadCategories(); // Reload categories after adding
         } else {
             console.error("Failed to add category. Status:", response.status);
         }
@@ -74,43 +70,38 @@ document.getElementById("add-category-form").addEventListener("submit", async (e
     }
 });
 
-// Perform search by fetching data from the API using POST request
+// Perform search by fetching data from the API using POST request (search_by_category)
 async function performSearch() {
-    const query = searchInput.value.trim();
+    const query = document.getElementById("search-input").value.trim();
     if (!query) {
-        searchResults.innerHTML = "Please enter a search term.";
-        searchResults.classList.add("show");
+        loadCategories();  // If no search term, reload all categories
         return;
     }
 
-    console.log("Performing search with query:", query);
-
     try {
-        // POST request to load knowledge data
-        const response = await fetch("http://localhost:8080/load_knowledge_data", {
+        const response = await fetch("http://localhost:8080/search_by_category", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ query }) // Sending the search query as part of the body
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ query })
         });
 
         if (response.ok) {
             const data = await response.json();
-            console.log("Data fetched from API:", data);
-            renderResults(data);
+            renderResults(data);  // Render search results
         } else {
-            console.error("Failed to fetch data. Status:", response.status);
-            searchResults.innerHTML = "Failed to load data.";
+            console.error("Failed to perform search");
         }
     } catch (error) {
-        console.error("Error fetching data:", error);
-        searchResults.innerHTML = "Error loading data.";
+        console.error("Error loading search data:", error);
     }
 }
 
+// Attach search function to search button
+document.getElementById("search-button").addEventListener("click", performSearch);
+
 // Render search results with dropdown and collapsible examples
 function renderResults(results) {
+    const searchResults = document.getElementById("search-results");
     searchResults.innerHTML = "";  
     searchResults.classList.add("show");
 
@@ -140,16 +131,15 @@ function renderResults(results) {
         // Examples (collapsible)
         const examples = document.createElement("div");
         examples.className = "result-examples";
-        result.examples.forEach(example => {
-            const exampleTitle = document.createElement("p");
-            exampleTitle.textContent = example.title;
+        
+        const exampleTitle = document.createElement("p");
+        exampleTitle.textContent = result.examples.title;
 
-            const exampleCode = document.createElement("pre");
-            exampleCode.textContent = example.code;
+        const exampleCode = document.createElement("pre");
+        exampleCode.textContent = result.examples.code;
 
-            examples.appendChild(exampleTitle);
-            examples.appendChild(exampleCode);
-        });
+        examples.appendChild(exampleTitle);
+        examples.appendChild(exampleCode);
 
         // Toggle button for examples
         const toggleButton = document.createElement("span");
@@ -163,18 +153,21 @@ function renderResults(results) {
         // Dropdown for Edit/Delete options
         const dropdown = document.createElement("div");
         dropdown.className = "result-dropdown";
-        dropdown.innerHTML = '⋮';
+        
+        const dropdownIcon = document.createElement("i");
+        dropdownIcon.className = "fas fa-ellipsis-v"; // FontAwesome icon for dropdown
+        dropdown.appendChild(dropdownIcon);
         
         const dropdownContent = document.createElement("div");
         dropdownContent.className = "result-dropdown-content";
         
         const editOption = document.createElement("a");
         editOption.href = "#";
-        editOption.textContent = "Edit";
+        editOption.innerHTML = `<i class="fas fa-edit"></i> Edit`; // FontAwesome edit icon
         
         const deleteOption = document.createElement("a");
         deleteOption.href = "#";
-        deleteOption.textContent = "Delete";
+        deleteOption.innerHTML = `<i class="fas fa-trash-alt"></i> Delete`; // FontAwesome delete icon
         
         dropdownContent.appendChild(editOption);
         dropdownContent.appendChild(deleteOption);

@@ -37,7 +37,7 @@ header h1 {
   color: white;
   border: none;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 
 .dropdown-content {
@@ -220,11 +220,12 @@ footer {
 }
 
 .modal-content {
-  background-color: white;
-  padding: 20px;
+  background-color: #f9f9f9;
+  padding: 25px;
   width: 90%;
   max-width: 400px;
-  border-radius: 8px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
 }
 
@@ -234,6 +235,35 @@ footer {
   right: 10px;
   font-size: 1.5rem;
   cursor: pointer;
+}
+
+#add-category-form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#add-category-form input, #add-category-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#add-category-form button[type="submit"] {
+  margin-top: 15px;
+  padding: 10px;
+  width: 100%;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#add-category-form button[type="submit"]:hover {
+  background-color: #333;
 }
 
 /* Responsive */
