@@ -3,12 +3,15 @@ import urllib.parse
 from json import load
 from app.utils.models import Category
 from bson import ObjectId
+from os import getenv
+
 
 DATABASE_NAME = "knowledge_repo"
 COLLECTION_NAME = "domain_specific"
 
-username = urllib.parse.quote_plus('abhi')
-password = urllib.parse.quote_plus('supersecretpassword')
+user, pwd = getenv("MONGO_USER"), getenv("MONGO_PWD")
+username = urllib.parse.quote_plus(user)
+password = urllib.parse.quote_plus(pwd)
 
 class MongoDB:
     def __init__(
