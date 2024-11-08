@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 import urllib.parse
 from json import load
-from app.utils.models import Category, CategoryExample
+from app.utils.models import Category
 from bson import ObjectId
 
 DATABASE_NAME = "knowledge_repo"
