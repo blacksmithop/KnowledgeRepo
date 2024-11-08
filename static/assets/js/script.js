@@ -6,6 +6,7 @@ const sendButton = document.getElementById("send-button");
 const chatInput = document.getElementById("chat-input");
 const chatbotBody = document.getElementById("chatbot-body");
 
+// Show or hide the chatbot on icon click
 chatIcon.addEventListener("click", () => {
     chatbotContainer.classList.toggle("show");
     chatbotContainer.style.opacity = chatbotContainer.classList.contains("show") ? "1" : "0";
@@ -45,8 +46,6 @@ function sendMessage() {
         chatbotBody.scrollTop = chatbotBody.scrollHeight;
     }, 1000);
 }
-
-// Search and Category Management Code
 
 // Dropdown Menu Toggle
 const dropdownBtn = document.querySelector(".dropdown-btn");

@@ -313,13 +313,14 @@ footer {
   background-color: #0056b3;
 }
 
-/* Chatbot Container */
+/* Chatbot Container - Increased height */
 #chatbot-container {
   position: fixed;
   bottom: 80px;
   right: 20px;
   width: 300px;
-  max-height: 400px;
+  max-height: 60vh; /* 60% of the viewport height */
+  height: auto;
   display: none; /* Hidden by default, shown when class 'show' is added */
   flex-direction: column;
   background-color: #ffffff;
@@ -351,7 +352,7 @@ footer {
   font-size: 1.2rem;
 }
 
-/* Chatbot Body */
+/* Chatbot Body - Scrollable with padding adjustments */
 .chatbot-body {
   flex-grow: 1;
   padding: 10px;
@@ -360,12 +361,13 @@ footer {
   font-size: 0.9rem;
 }
 
+/* Chat Message Styles - Each message on a new line */
 .bot-message, .user-message {
   max-width: 80%;
   margin: 8px 0;
   padding: 10px;
   border-radius: 15px;
-  display: inline-block;
+  display: block;
   clear: both;
 }
 
@@ -389,6 +391,7 @@ footer {
   border-top: 1px solid #ddd;
 }
 
+/* Input Field Styling */
 #chat-input {
   flex-grow: 1;
   padding: 8px;
@@ -398,19 +401,20 @@ footer {
   outline: none;
 }
 
+/* Send Button - Replaced with an icon */
 #send-button {
-  background-color: #007bff;
-  color: white;
+  background: none;
   border: none;
-  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #007bff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 40px;
   height: 40px;
-  font-size: 1.1rem;
-  margin-left: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-#send-button:hover {
-  background-color: #0056b3;
+#send-button i {
+  font-size: 1.5rem;
 }
