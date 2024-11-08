@@ -13,7 +13,7 @@ password = urllib.parse.quote_plus('supersecretpassword')
 class MongoDB:
     def __init__(
         self,
-        uri="mongodb://%s:%s@localhost:27018/" % (username, password),
+        uri="mongodb://%s:%s@mongodb:27017/" % (username, password),
     ):
         self.client = MongoClient(uri)
         self.database = self.client[DATABASE_NAME]
