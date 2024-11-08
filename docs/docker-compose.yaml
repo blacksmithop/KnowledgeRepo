@@ -16,8 +16,6 @@ services:
       - app_network
     restart: always
 
-
-
   elastic_search:
       image: docker.elastic.co/elasticsearch/elasticsearch:8.15.3
       container_name: elastic_search
