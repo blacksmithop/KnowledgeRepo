@@ -37,7 +37,7 @@ services:
     volumes:
       - mongodb_data_container:/data/db
     ports:
-      - 27018:27017
+      - 27017:27017
     networks:
       - app_network
     restart: always
