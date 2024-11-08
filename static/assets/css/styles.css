@@ -289,3 +289,128 @@ footer {
       height: 40px;
   }
 }
+
+/* Chat Icon */
+#chat-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+#chat-icon:hover {
+  background-color: #0056b3;
+}
+
+/* Chatbot Container */
+#chatbot-container {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  max-height: 400px;
+  display: none; /* Hidden by default, shown when class 'show' is added */
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+}
+
+#chatbot-container.show {
+  display: flex; /* Show when the 'show' class is toggled */
+  opacity: 1;
+}
+
+/* Chatbot Header */
+.chatbot-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-chatbot {
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+/* Chatbot Body */
+.chatbot-body {
+  flex-grow: 1;
+  padding: 10px;
+  background-color: #f8f9fa;
+  overflow-y: auto;
+  font-size: 0.9rem;
+}
+
+.bot-message, .user-message {
+  max-width: 80%;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 15px;
+  display: inline-block;
+  clear: both;
+}
+
+.bot-message {
+  background-color: #e9ecef;
+  color: #333;
+  align-self: flex-start;
+}
+
+.user-message {
+  background-color: #007bff;
+  color: white;
+  align-self: flex-end;
+}
+
+/* Chatbot Footer */
+.chatbot-footer {
+  display: flex;
+  padding: 10px;
+  background-color: #ffffff;
+  border-top: 1px solid #ddd;
+}
+
+#chat-input {
+  flex-grow: 1;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+}
+
+#send-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.1rem;
+  margin-left: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#send-button:hover {
+  background-color: #0056b3;
+}

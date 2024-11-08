@@ -1,3 +1,53 @@
+// Chat Icon and Chatbot Elements
+const chatIcon = document.getElementById("chat-icon");
+const chatbotContainer = document.getElementById("chatbot-container");
+const closeChatbot = document.querySelector(".close-chatbot");
+const sendButton = document.getElementById("send-button");
+const chatInput = document.getElementById("chat-input");
+const chatbotBody = document.getElementById("chatbot-body");
+
+chatIcon.addEventListener("click", () => {
+    chatbotContainer.classList.toggle("show");
+    chatbotContainer.style.opacity = chatbotContainer.classList.contains("show") ? "1" : "0";
+});
+
+// Close the chatbot when the close button is clicked
+closeChatbot.addEventListener("click", () => {
+    chatbotContainer.classList.remove("show");
+});
+
+// Send a message when the send button is clicked or Enter is pressed
+sendButton.addEventListener("click", sendMessage);
+chatInput.addEventListener("keypress", (e) => {
+    if (e.key === 'Enter') sendMessage();
+});
+
+// Function to send a message and display a bot response
+function sendMessage() {
+    const message = chatInput.value.trim();
+    if (!message) return;
+
+    // Display the user message
+    const userMessage = document.createElement("div");
+    userMessage.className = "user-message";
+    userMessage.textContent = message;
+    chatbotBody.appendChild(userMessage);
+
+    chatInput.value = "";  // Clear input
+    chatbotBody.scrollTop = chatbotBody.scrollHeight;  // Scroll to the bottom
+
+    // Simulate a bot response (you can replace this with an API call)
+    setTimeout(() => {
+        const botMessage = document.createElement("div");
+        botMessage.className = "bot-message";
+        botMessage.textContent = "I'm here to help!"; // Placeholder response
+        chatbotBody.appendChild(botMessage);
+        chatbotBody.scrollTop = chatbotBody.scrollHeight;
+    }, 1000);
+}
+
+// Search and Category Management Code
+
 // Dropdown Menu Toggle
 const dropdownBtn = document.querySelector(".dropdown-btn");
 const dropdownContent = document.querySelector(".dropdown-content");
@@ -20,7 +70,7 @@ async function loadCategories() {
         console.error("Error loading categories:", error);
     }
 }
-document.addEventListener("DOMContentLoaded", loadCategories); // Called by default on page load
+document.addEventListener("DOMContentLoaded", loadCategories);
 
 // Elements for Modal
 const addButton = document.getElementById("add-button");
