@@ -1,4 +1,4 @@
-/* General styles */
+/* START: General Styles */
 * {
   margin: 0;
   padding: 0;
@@ -13,8 +13,9 @@ body {
   background-color: white;
   color: black;
 }
+/* END: General Styles */
 
-/* Header */
+/* START: Header Styles */
 header {
   background-color: black;
   color: white;
@@ -61,8 +62,9 @@ header h1 {
 .dropdown-content:hover {
   display: block;
 }
+/* END: Header Styles */
 
-/* Search Container */
+/* START: Search Container Styles */
 .search-container {
   display: flex;
   justify-content: center;
@@ -92,8 +94,9 @@ header h1 {
 #search-button:hover, #add-button:hover {
   background-color: #333;
 }
+/* END: Search Container Styles */
 
-/* Search Results */
+/* START: Search Results Styles */
 #search-results {
   margin-top: 20px;
   padding: 10px;
@@ -135,7 +138,6 @@ header h1 {
   object-fit: contain;
 }
 
-/* Dropdown Menu */
 .result-dropdown {
   position: absolute;
   top: 10px;
@@ -168,12 +170,12 @@ header h1 {
   background-color: #f0f0f0;
 }
 
-/* Show dropdown on hover */
 .result-dropdown:hover .result-dropdown-content {
   display: block;
 }
+/* END: Search Results Styles */
 
-/* Collapsible Examples */
+/* START: Collapsible Example Styles */
 .result-examples {
   font-size: 0.9rem;
   color: #444;
@@ -192,8 +194,9 @@ header h1 {
   margin-top: 5px;
   text-decoration: underline;
 }
+/* END: Collapsible Example Styles */
 
-/* Footer */
+/* START: Footer Styles */
 footer {
   background-color: black;
   color: white;
@@ -201,8 +204,9 @@ footer {
   padding: 10px;
   margin-top: auto;
 }
+/* END: Footer Styles */
 
-/* Modal Styles */
+/* START: Modal Styles */
 .modal {
   display: none; /* Hidden by default */
   position: fixed;
@@ -265,32 +269,9 @@ footer {
 #add-category-form button[type="submit"]:hover {
   background-color: #333;
 }
+/* END: Modal Styles */
 
-/* Responsive */
-@media (max-width: 768px) {
-  .search-container {
-      flex-direction: column;
-      width: 90%;
-      margin: auto;
-  }
-
-  #search-input {
-      width: 100%;
-  }
-
-  .result-item {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-  }
-
-  .result-icon {
-      width: 40px;
-      height: 40px;
-  }
-}
-
-/* Chat Icon */
+/* START: Chatbot Styles */
 #chat-icon {
   position: fixed;
   bottom: 20px;
@@ -313,7 +294,6 @@ footer {
   background-color: #0056b3;
 }
 
-/* Chatbot Container - Increased height */
 #chatbot-container {
   position: fixed;
   bottom: 80px;
@@ -335,7 +315,6 @@ footer {
   opacity: 1;
 }
 
-/* Chatbot Header */
 .chatbot-header {
   background-color: #007bff;
   color: white;
@@ -352,7 +331,6 @@ footer {
   font-size: 1.2rem;
 }
 
-/* Chatbot Body - Scrollable with padding adjustments */
 .chatbot-body {
   flex-grow: 1;
   padding: 10px;
@@ -361,7 +339,6 @@ footer {
   font-size: 0.9rem;
 }
 
-/* Chat Message Styles - Each message on a new line */
 .bot-message, .user-message {
   max-width: 80%;
   margin: 8px 0;
@@ -383,7 +360,6 @@ footer {
   align-self: flex-end;
 }
 
-/* Chatbot Footer */
 .chatbot-footer {
   display: flex;
   padding: 10px;
@@ -391,7 +367,6 @@ footer {
   border-top: 1px solid #ddd;
 }
 
-/* Input Field Styling */
 #chat-input {
   flex-grow: 1;
   padding: 8px;
@@ -401,7 +376,6 @@ footer {
   outline: none;
 }
 
-/* Send Button - Replaced with an icon */
 #send-button {
   background: none;
   border: none;
@@ -418,3 +392,29 @@ footer {
 #send-button i {
   font-size: 1.5rem;
 }
+/* END: Chatbot Styles */
+
+/* START: Responsive Styles */
+@media (max-width: 768px) {
+  .search-container {
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+  }
+
+  #search-input {
+    width: 100%;
+  }
+
+  .result-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .result-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+/* END: Responsive Styles */

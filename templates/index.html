@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- START: Head Section -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knowledge Repo</title>
     <link href="{{ url_for('static', path='/assets/css/styles.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="path-to-default-icon/favicon.ico"> <!-- Update with a default icon -->
+    <!-- END: Head Section -->
 </head>
 <body>
+    <!-- START: Header Section -->
     <header>
         <h1>Knowledge Repo</h1>
         <nav>
@@ -21,7 +24,9 @@
             </div>
         </nav>
     </header>
+    <!-- END: Header Section -->
 
+    <!-- START: Main Content Section -->
     <main>
         <div class="search-container">
             <button id="add-button">Add</button>
@@ -30,8 +35,9 @@
         </div>
         <div id="search-results" class="hidden"></div>
     </main>
+    <!-- END: Main Content Section -->
 
-    <!-- Modal for adding new categories -->
+    <!-- START: Add Category Modal -->
     <div id="add-modal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
@@ -56,13 +62,13 @@
             </form>
         </div>
     </div>
+    <!-- END: Add Category Modal -->
 
-    <!-- Chat Icon -->
+    <!-- START: Chatbot Section -->
     <div id="chat-icon">
         <i class="fas fa-comments"></i>
     </div>
 
-    <!-- Chatbot Container -->
     <div id="chatbot-container" class="hidden">
         <div class="chatbot-header">
             <h3>Chatbot</h3>
@@ -76,10 +82,16 @@
             <button id="send-button"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
+    <!-- END: Chatbot Section -->
 
+    <!-- START: Footer Section -->
     <footer>
         <p>Knowledge Repo © 2024</p>
     </footer>
+    <!-- END: Footer Section -->
+
+    <!-- START: JavaScript Link -->
     <script src="{{ url_for('static', path='/assets/js/script.js') }}"></script>
+    <!-- END: JavaScript Link -->
 </body>
 </html>

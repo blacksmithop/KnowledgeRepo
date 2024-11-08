@@ -1,4 +1,4 @@
-// Chat Icon and Chatbot Elements
+// START: Chatbot Functionality
 const chatIcon = document.getElementById("chat-icon");
 const chatbotContainer = document.getElementById("chatbot-container");
 const closeChatbot = document.querySelector(".close-chatbot");
@@ -46,16 +46,18 @@ function sendMessage() {
         chatbotBody.scrollTop = chatbotBody.scrollHeight;
     }, 1000);
 }
+// END: Chatbot Functionality
 
-// Dropdown Menu Toggle
+// START: Dropdown Menu Toggle
 const dropdownBtn = document.querySelector(".dropdown-btn");
 const dropdownContent = document.querySelector(".dropdown-content");
 
 dropdownBtn.addEventListener("click", () => {
     dropdownContent.classList.toggle("show");
 });
+// END: Dropdown Menu Toggle
 
-// Fetch categories on page load (list_category)
+// START: Fetch Categories on Page Load (list_category)
 async function loadCategories() {
     try {
         const response = await fetch("/list_category", { method: "GET" });
@@ -70,8 +72,9 @@ async function loadCategories() {
     }
 }
 document.addEventListener("DOMContentLoaded", loadCategories);
+// END: Fetch Categories on Page Load
 
-// Elements for Modal
+// START: Modal Functionality for Adding Category
 const addButton = document.getElementById("add-button");
 const addModal = document.getElementById("add-modal");
 const closeButton = document.querySelector(".close-button");
@@ -84,8 +87,9 @@ closeButton.addEventListener("click", () => addModal.classList.remove("show-moda
 addModal.addEventListener("click", (event) => {
     if (event.target === addModal) addModal.classList.remove("show-modal");
 });
+// END: Modal Functionality for Adding Category
 
-// Form submission for adding new category
+// START: Form Submission for Adding New Category
 document.getElementById("add-category-form").addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -118,8 +122,9 @@ document.getElementById("add-category-form").addEventListener("submit", async (e
         console.error("Error adding category:", error);
     }
 });
+// END: Form Submission for Adding New Category
 
-// Perform search by fetching data from the API using POST request (search_by_category)
+// START: Search Functionality (search_by_category)
 async function performSearch() {
     const query = document.getElementById("search-input").value.trim();
     if (!query) {
@@ -147,8 +152,9 @@ async function performSearch() {
 
 // Attach search function to search button
 document.getElementById("search-button").addEventListener("click", performSearch);
+// END: Search Functionality
 
-// Render search results with dropdown and collapsible examples
+// START: Render Search Results with Dropdown and Collapsible Examples
 function renderResults(results) {
     const searchResults = document.getElementById("search-results");
     searchResults.innerHTML = "";  
@@ -237,3 +243,4 @@ function renderResults(results) {
         searchResults.appendChild(resultItem);
     });
 }
+// END: Render Search Results with Dropdown and Collapsible Examples
