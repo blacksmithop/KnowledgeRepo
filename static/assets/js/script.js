@@ -9,7 +9,7 @@ dropdownBtn.addEventListener("click", () => {
 // Fetch categories on page load (list_category)
 async function loadCategories() {
     try {
-        const response = await fetch("http://localhost:8080/list_category", { method: "GET" });
+        const response = await fetch("/list_category", { method: "GET" });
         if (response.ok) {
             const categories = await response.json();
             renderResults(categories);  // Display categories by default
@@ -51,7 +51,7 @@ document.getElementById("add-category-form").addEventListener("submit", async (e
     };
 
     try {
-        const response = await fetch("http://localhost:8080/add_category", {
+        const response = await fetch("/add_category", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
@@ -79,7 +79,7 @@ async function performSearch() {
     }
 
     try {
-        const response = await fetch("http://localhost:8080/search_by_category", {
+        const response = await fetch("/search_by_category", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ query })
