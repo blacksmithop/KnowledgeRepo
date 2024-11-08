@@ -4,19 +4,24 @@ from json import load
 from app.utils.models import Category
 from bson import ObjectId
 from os import getenv
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 DATABASE_NAME = "knowledge_repo"
 COLLECTION_NAME = "domain_specific"
 
-user, pwd = getenv("MONGO_USER"), getenv("MONGO_PWD")
+user, pwd, uri, port = getenv("MONGO_USER"), getenv("MONGO_PWD"), getenv("MONGO_URI"), getenv("MONGO_PORT")
 username = urllib.parse.quote_plus(user)
 password = urllib.parse.quote_plus(pwd)
+uri = uri or "mongodb"
+port = port or 27017
 
 class MongoDB:
     def __init__(
         self,
-        uri="mongodb://%s:%s@mongodb:27017/" % (username, password),
+        uri="mongodb://%s:%s@%s:%s/" % (username, password, uri, port), #replace with mongodb
     ):
         self.client = MongoClient(uri)
         self.database = self.client[DATABASE_NAME]
