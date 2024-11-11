@@ -5,6 +5,7 @@ const closeChatbot = document.querySelector(".close-chatbot");
 const sendButton = document.getElementById("send-button");
 const chatInput = document.getElementById("chat-input");
 const chatbotBody = document.getElementById("chatbot-body");
+let currentBotMessage = null;  // Track the current bot message container
 
 // Show or hide the chatbot on icon click
 chatIcon.addEventListener("click", () => {
@@ -17,35 +18,57 @@ closeChatbot.addEventListener("click", () => {
     chatbotContainer.classList.remove("show");
 });
 
-// Send a message when the send button is clicked or Enter is pressed
-sendButton.addEventListener("click", sendMessage);
-chatInput.addEventListener("keypress", (e) => {
-    if (e.key === 'Enter') sendMessage();
-});
+// Function to start a chat with streaming response from the server
+function startChat(query) {
+    // Initialize an EventSource with the chat endpoint, passing the query as a URL parameter
+    const eventSource = new EventSource(`/chat/${encodeURIComponent(query)}`);
 
-// Function to send a message and display a bot response
+    // Create a new bot message container for the response
+    currentBotMessage = document.createElement("div");
+    currentBotMessage.className = "bot-message";
+    chatbotBody.appendChild(currentBotMessage);
+
+    // Listen for 'message' events from the server
+    eventSource.addEventListener('message', (event) => {
+        const data = JSON.parse(event.data);
+
+        if (data.text) {
+            // Append text to the current bot message element
+            currentBotMessage.textContent += data.text;
+            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+        }
+    });
+
+    // Handle errors, e.g., if the server closes the connection
+    eventSource.onerror = () => {
+        console.error("Error with SSE connection.");
+        eventSource.close();
+    };
+}
+
+// Modify the sendMessage function to initiate a chat with the server
 function sendMessage() {
     const message = chatInput.value.trim();
     if (!message) return;
 
-    // Display the user message
+    // Display the user message in the chat window
     const userMessage = document.createElement("div");
     userMessage.className = "user-message";
     userMessage.textContent = message;
     chatbotBody.appendChild(userMessage);
 
-    chatInput.value = "";  // Clear input
-    chatbotBody.scrollTop = chatbotBody.scrollHeight;  // Scroll to the bottom
+    // Clear the input field
+    chatInput.value = "";
+    chatbotBody.scrollTop = chatbotBody.scrollHeight;
 
-    // Simulate a bot response (you can replace this with an API call)
-    setTimeout(() => {
-        const botMessage = document.createElement("div");
-        botMessage.className = "bot-message";
-        botMessage.textContent = "I'm here to help!"; // Placeholder response
-        chatbotBody.appendChild(botMessage);
-        chatbotBody.scrollTop = chatbotBody.scrollHeight;
-    }, 1000);
+    // Start streaming the bot response using the user's message as the query
+    startChat(message);
 }
+
+// Send a message when the send button is clicked or Enter is pressed
+sendButton.addEventListener("click", sendMessage);
+chatInput.addEventListener("keypress", (e) => {
+    if (e.key === 'Enter') sendMessage();})
 // END: Chatbot Functionality
 
 // START: Dropdown Menu Toggle
