@@ -16,20 +16,21 @@ services:
       - app_network
     restart: always
 
-  elastic_search:
-      image: docker.elastic.co/elasticsearch/elasticsearch:8.15.3
-      container_name: elastic_search
-      networks:
-        - app_network
-      ports:
-        - '9200:9200'
-      volumes:
-        - elastic_data_container:/usr/share/elasticsearch/data
-      environment:
-        - cluster.name=my-es-cluster
-        - node.name=node-1
-        - discovery.type=single-node
-        - xpack.security.enabled=false
+  # elastic_search:
+  #     image: docker.elastic.co/elasticsearch/elasticsearch:8.15.3
+  #     container_name: elastic_search
+  #     networks:
+  #       - app_network
+  #     ports:
+  #       - '9200:9200'
+  #     volumes:
+  #       - elastic_data_container:/usr/share/elasticsearch/data
+  #     environment:
+  #       - cluster.name=my-es-cluster
+  #       - node.name=node-1
+  #       - discovery.type=single-node
+  #       - xpack.security.enabled=false
+
 networks:
   app_network:
     driver: bridge
