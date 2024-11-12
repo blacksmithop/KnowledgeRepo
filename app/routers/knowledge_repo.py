@@ -1,9 +1,10 @@
+import json
+
 from fastapi import APIRouter, Request
 from fastapi.templating import Jinja2Templates
-from app import Category, AddCategory, DeleteCategory, MongoDB
 from sse_starlette.sse import EventSourceResponse
-from app import chat_chain
-import json
+
+from app import AddCategory, Category, DeleteCategory, MongoDB, chat_chain
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")

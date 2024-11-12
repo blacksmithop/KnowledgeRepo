@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from app.routers import knowledge_repo
 
+from app.routers import knowledge_repo
 
 VERSION = "0.1.0"
 DESCRIPTION = "A FastAPI server to for my knowledge repository"

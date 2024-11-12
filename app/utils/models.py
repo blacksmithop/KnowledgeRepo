@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import List, Optional
 
 from pydantic import BaseModel, Field, field_validator
 
@@ -14,16 +14,18 @@ class Category(BaseModel):
     name: str
     description: str
     examples: Optional[CategoryExample] = None
-    
+
     @field_validator("id")
     def convert_objectid(cls, v):
-       return str(v)
-   
+        return str(v)
+
+
 class AddCategory(BaseModel):
     favicon: str = ""
     name: str
     description: str
     examples: Optional[CategoryExample] = None
+
 
 class DeleteCategory(BaseModel):
     id: str

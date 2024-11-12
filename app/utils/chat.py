@@ -1,5 +1,6 @@
 from langchain.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser, StrOutputParser
+
 from app import llm
 
 template = """
@@ -8,9 +9,7 @@ Query: {query}
 Response:
 """
 
-prompt = PromptTemplate(
-    input_variables=["query"], template=template
-)
+prompt = PromptTemplate(input_variables=["query"], template=template)
 
 chat_chain = prompt | llm | StrOutputParser()
 
