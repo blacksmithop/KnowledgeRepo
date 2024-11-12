@@ -10,6 +10,7 @@ from app.utils.models import Category
 
 load_dotenv()
 
+deployment_mode = getenv("DEPLOYMENT_MODE")
 
 DATABASE_NAME = "knowledge_repo"
 COLLECTION_NAME = "domain_specific"
@@ -30,7 +31,10 @@ class MongoDB:
     def __init__(
         self
     ):
-        uri="mongodb://%s:%s@mongodb:27017/" % (username, password)
+        if deployment_mode == "production":
+            uri="mongodb://%s:%s@mongodb:27017/" % (username, password)
+        elif deployment_mode == "dev":
+            uri="mongodb://%s:%s@localhost:27018/" % (username, password)
         self.client = MongoClient(uri)
         self.database = self.client[DATABASE_NAME]
         collection_exists = self._check_if_collection_exists()
