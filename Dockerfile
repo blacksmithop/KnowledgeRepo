@@ -4,6 +4,7 @@ WORKDIR /code
 
 COPY requirements.txt /code/requirements.txt
 
+RUN pip install torch==2.3.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 COPY . /code/
