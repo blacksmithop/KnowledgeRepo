@@ -23,15 +23,14 @@ user, pwd, uri, port = (
 username = urllib.parse.quote_plus(user)
 password = urllib.parse.quote_plus(pwd)
 uri = uri or "mongodb"
-port = port or 27017
+port = port or 27018
 
 
 class MongoDB:
     def __init__(
-        self,
-        uri="mongodb://%s:%s@%s:%s/"
-        % (username, password, uri, port),  # replace with mongodb
+        self
     ):
+        uri="mongodb://%s:%s@mongodb:27017/" % (username, password)
         self.client = MongoClient(uri)
         self.database = self.client[DATABASE_NAME]
         collection_exists = self._check_if_collection_exists()
